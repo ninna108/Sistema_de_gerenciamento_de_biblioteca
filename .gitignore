@@ -1,0 +1,29 @@
+
+### .gitignore
+
+```gitignore
+# Ignorar arquivos e pastas que não devem ser versionados
+
+# Arquivos de configuração do MySQL
+*.sql
+
+# Arquivos de banco de dados
+*.db
+*.sqlite
+
+# Arquivos temporários
+*.log
+*.tmp
+
+# Arquivos específicos do editor
+*.swp
+*.swo
+*.sublime-project
+*.sublime-workspace
+
+# Diretórios do sistema
+.DS_Store
+Thumbs.db
+
+# Diretórios do sistema operacional
+desktop.ini
