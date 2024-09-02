@@ -1,0 +1,81 @@
+Biblioteca: Sistema de Gestão de Livros e Empréstimos
+
+Descrição: Este projeto tem como objetivo criar um sistema básico para a gestão de uma biblioteca. O sistema inclui um banco de dados que armazena informações sobre autores, livros e empréstimos. Os principais recursos incluem:
+
+Autores: Tabela que armazena informações sobre os autores dos livros, como nome e nacionalidade.
+Livros: Tabela que armazena dados sobre os livros disponíveis na biblioteca, incluindo título, autor, ano de publicação e gênero.
+Empréstimos: Tabela que registra os empréstimos de livros, incluindo a data de empréstimo, a data de devolução (se disponível) e o nome do usuário que realizou o empréstimo.
+Requisitos:
+
+Criar um banco de dados chamado Biblioteca.
+Criar três tabelas: Autores, Livros e Emprestimos.
+Inserir dados exemplo em cada tabela.
+Executar consultas para listar livros com seus autores e identificar empréstimos em aberto.
+Atualizar a data de devolução de um empréstimo específico.
+Excluir livros e registros de empréstimos associados.
+Passos para Implementação:
+
+Criar o banco de dados e tabelas: Defina o esquema do banco de dados e crie as tabelas necessárias.
+Inserir dados: Adicione dados de exemplo para autores, livros e empréstimos.
+Executar consultas: Realize consultas SQL para extrair informações úteis.
+Atualizar dados: Atualize registros existentes conforme necessário.
+Excluir dados: Remova livros e empréstimos quando apropriado.
+# Projeto Biblioteca
+
+## Descrição
+
+Este projeto implementa um sistema básico de gerenciamento de biblioteca utilizando um banco de dados MySQL. O banco de dados contém tabelas para gerenciar autores, livros e empréstimos. Este README fornece uma visão geral do projeto, instruções para configuração e exemplos de uso.
+
+## Estrutura do Banco de Dados
+
+O banco de dados `Biblioteca` inclui as seguintes tabelas:
+
+1. **Autores**
+   - `AutorID` (INT, AUTO_INCREMENT, PRIMARY KEY)
+   - `Nome` (VARCHAR(100), NOT NULL)
+   - `Nacionalidade` (VARCHAR(100))
+
+2. **Livros**
+   - `LivroID` (INT, AUTO_INCREMENT, PRIMARY KEY)
+   - `Titulo` (VARCHAR(255), NOT NULL)
+   - `AutorID` (INT, FOREIGN KEY referenciando `Autores(AutorID)`)
+   - `AnoPublicacao` (YEAR)
+   - `Genero` (VARCHAR(50))
+
+3. **Emprestimos**
+   - `EmprestimoID` (INT, AUTO_INCREMENT, PRIMARY KEY)
+   - `LivroID` (INT, FOREIGN KEY referenciando `Livros(LivroID)`)
+   - `DataEmprestimo` (DATE, NOT NULL)
+   - `DataDevolucao` (DATE)
+   - `NomeUsuario` (VARCHAR(100), NOT NULL)
+
+## Instruções de Uso
+
+1. **Configuração Inicial**
+   - Execute os comandos SQL no arquivo de script fornecido para criar o banco de dados e tabelas, e para inserir dados de exemplo.
+
+2. **Consultas**
+   - Liste todos os livros e seus autores.
+   - Liste os empréstimos que ainda estão em aberto.
+
+3. **Atualizações e Exclusões**
+   - Atualize a data de devolução de um empréstimo.
+   - Remova livros e os registros de empréstimos associados a eles.
+
+## Exemplos de Consultas SQL
+
+- **Listar todos os livros com seus autores:**
+  ```sql
+  SELECT Livros.Titulo, Autores.Nome AS Autor, Livros.AnoPublicacao
+  FROM Livros
+  JOIN Autores ON Livros.AutorID = Autores.AutorID;
+Listar empréstimos em aberto:
+SELECT Emprestimos.EmprestimoID, Livros.Titulo, Emprestimos.DataEmprestimo, Emprestimos.NomeUsuario
+FROM Emprestimos
+JOIN Livros ON Emprestimos.LivroID = Livros.LivroID
+WHERE Emprestimos.DataDevolucao IS NULL;
+Contribuição
+Sinta-se à vontade para contribuir com melhorias e correções. Faça um fork deste repositório e envie um pull request com suas alterações.
+
+Licença
+Este projeto está licenciado sob a MIT License. Veja o arquivo LICENSE para mais detalhes.
